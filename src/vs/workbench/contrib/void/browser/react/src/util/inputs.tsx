@@ -3,23 +3,23 @@
  *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
  *--------------------------------------------------------------------------------------*/
 
-import React, { forwardRef, ForwardRefExoticComponent, MutableRefObject, RefAttributes, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, ForwardRefExoticComponent, RefAttributes, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { IInputBoxStyles, InputBox } from '../../../../../../../base/browser/ui/inputbox/inputBox.js';
-import { defaultCheckboxStyles, defaultInputBoxStyles, defaultSelectBoxStyles } from '../../../../../../../platform/theme/browser/defaultStyles.js';
 import { SelectBox } from '../../../../../../../base/browser/ui/selectBox/selectBox.js';
-import { IDisposable } from '../../../../../../../base/common/lifecycle.js';
 import { Checkbox } from '../../../../../../../base/browser/ui/toggle/toggle.js';
+import { IDisposable } from '../../../../../../../base/common/lifecycle.js';
+import { defaultCheckboxStyles, defaultInputBoxStyles, defaultSelectBoxStyles } from '../../../../../../../platform/theme/browser/defaultStyles.js';
 
-import { CodeEditorWidget } from '../../../../../../../editor/browser/widget/codeEditor/codeEditorWidget.js'
-import { useAccessor } from './services.js';
-import { ITextModel } from '../../../../../../../editor/common/model.js';
-import { asCssVariable } from '../../../../../../../platform/theme/common/colorUtils.js';
-import { inputBackground, inputForeground } from '../../../../../../../platform/theme/common/colorRegistry.js';
-import { useFloating, autoUpdate, offset, flip, shift, size, autoPlacement } from '@floating-ui/react';
+import { autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/react';
+import { ChevronRight, File, Folder, LucideProps } from 'lucide-react';
 import { URI } from '../../../../../../../base/common/uri.js';
-import { getBasename, getFolderName } from '../sidebar-tsx/SidebarChat.js';
-import { ChevronRight, File, Folder, FolderClosed, LucideProps } from 'lucide-react';
+import { CodeEditorWidget } from '../../../../../../../editor/browser/widget/codeEditor/codeEditorWidget.js';
+import { ITextModel } from '../../../../../../../editor/common/model.js';
+import { inputBackground, inputForeground } from '../../../../../../../platform/theme/common/colorRegistry.js';
+import { asCssVariable } from '../../../../../../../platform/theme/common/colorUtils.js';
 import { StagingSelectionItem } from '../../../../common/chatThreadServiceTypes.js';
+import { getBasename } from '../sidebar-tsx/utils.js';
+import { useAccessor } from './services.js';
 
 
 // type guard

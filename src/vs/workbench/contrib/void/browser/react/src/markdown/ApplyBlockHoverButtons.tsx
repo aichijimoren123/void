@@ -3,15 +3,16 @@
  *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
  *--------------------------------------------------------------------------------------*/
 
-import { useState, useEffect, useCallback, useRef, Fragment } from 'react'
-import { useAccessor, useChatThreadsState, useChatThreadsStreamState, useCommandBarState, useCommandBarURIListener, useSettingsState } from '../util/services.js'
-import { usePromise, useRefState } from '../util/helpers.js'
-import { isFeatureNameDisabled } from '../../../../common/voidSettingsTypes.js'
+import { Check, Copy, FileSymlink, LucideIcon, Play, Square, Terminal, X } from 'lucide-react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import { PlacesType } from 'react-tooltip'
 import { URI } from '../../../../../../../base/common/uri.js'
-import { FileSymlink, LucideIcon, RotateCw, Terminal } from 'lucide-react'
-import { Check, X, Square, Copy, Play, } from 'lucide-react'
-import { getBasename, ListableToolItem, voidOpenFileFn, ToolChildrenWrapper } from '../sidebar-tsx/SidebarChat.js'
-import { PlacesType, VariantType } from 'react-tooltip'
+import { isFeatureNameDisabled } from '../../../../common/voidSettingsTypes.js'
+import { ListableToolItem } from '../sidebar-tsx/tools/ListableToolItem.js'
+import { ToolChildrenWrapper } from '../sidebar-tsx/tools/ToolChildren.js'
+import { getBasename, voidOpenFileFn } from '../sidebar-tsx/utils.js'
+import { useRefState } from '../util/helpers.js'
+import { useAccessor, useChatThreadsStreamState, useCommandBarURIListener, useSettingsState } from '../util/services.js'
 
 enum CopyButtonText {
 	Idle = 'Copy',

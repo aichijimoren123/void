@@ -3,16 +3,14 @@
  *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
  *--------------------------------------------------------------------------------------*/
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { FeatureName, featureNames, isFeatureNameDisabled, ModelSelection, modelSelectionsEqual, ProviderName, providerNames, SettingsOfProvider } from '../../../../../../../workbench/contrib/void/common/voidSettingsTypes.js'
-import { useSettingsState, useRefreshModelState, useAccessor } from '../util/services.js'
-import { _VoidSelectBox, VoidCustomDropdownBox } from '../util/inputs.js'
-import { SelectBox } from '../../../../../../../base/browser/ui/selectBox/selectBox.js'
-import { IconWarning } from '../sidebar-tsx/SidebarChat.js'
-import { VOID_OPEN_SETTINGS_ACTION_ID, VOID_TOGGLE_SETTINGS_ACTION_ID } from '../../../voidSettingsPane.js'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { modelFilterOfFeatureName, ModelOption } from '../../../../../../../workbench/contrib/void/common/voidSettingsService.js'
-import { WarningBox } from './WarningBox.js'
+import { FeatureName, isFeatureNameDisabled, modelSelectionsEqual } from '../../../../../../../workbench/contrib/void/common/voidSettingsTypes.js'
+import { VOID_OPEN_SETTINGS_ACTION_ID } from '../../../voidSettingsPane.js'
 import ErrorBoundary from '../sidebar-tsx/ErrorBoundary.js'
+import { VoidCustomDropdownBox } from '../util/inputs.js'
+import { useAccessor, useSettingsState } from '../util/services.js'
+import { WarningBox } from './WarningBox.js'
 
 const optionsEqual = (m1: ModelOption[], m2: ModelOption[]) => {
 	if (m1.length !== m2.length) return false

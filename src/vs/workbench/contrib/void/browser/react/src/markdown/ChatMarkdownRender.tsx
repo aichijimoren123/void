@@ -3,18 +3,18 @@
  *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
  *--------------------------------------------------------------------------------------*/
 
-import React, { JSX, useMemo, useState } from 'react'
 import { marked, MarkedToken, Token } from 'marked'
+import React, { JSX, useState } from 'react'
 
-import { convertToVscodeLang, detectLanguage } from '../../../../common/helpers/languageHelpers.js'
-import { BlockCodeApplyWrapper } from './ApplyBlockHoverButtons.js'
-import { useAccessor } from '../util/services.js'
-import { URI } from '../../../../../../../base/common/uri.js'
 import { isAbsolute } from '../../../../../../../base/common/path.js'
-import { separateOutFirstLine } from '../../../../common/helpers/util.js'
-import { BlockCode } from '../util/inputs.js'
+import { URI } from '../../../../../../../base/common/uri.js'
 import { CodespanLocationLink } from '../../../../common/chatThreadServiceTypes.js'
-import { getBasename, getRelative, voidOpenFileFn } from '../sidebar-tsx/SidebarChat.js'
+import { convertToVscodeLang, detectLanguage } from '../../../../common/helpers/languageHelpers.js'
+import { separateOutFirstLine } from '../../../../common/helpers/util.js'
+import { getBasename, getRelative, voidOpenFileFn } from '../sidebar-tsx/utils.js'
+import { BlockCode } from '../util/inputs.js'
+import { useAccessor } from '../util/services.js'
+import { BlockCodeApplyWrapper } from './ApplyBlockHoverButtons.js'
 
 
 export type ChatMessageLocation = {

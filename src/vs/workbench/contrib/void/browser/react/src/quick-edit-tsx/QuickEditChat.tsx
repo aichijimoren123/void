@@ -3,17 +3,14 @@
  *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
  *--------------------------------------------------------------------------------------*/
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useSettingsState, useAccessor, useCtrlKZoneStreamingState } from '../util/services.js';
-import { TextAreaFns, VoidInputBox2 } from '../util/inputs.js';
-import { QuickEditPropsType } from '../../../quickEditActions.js';
-import { ButtonStop, ButtonSubmit, IconX, VoidChatArea } from '../sidebar-tsx/SidebarChat.js';
-import { VOID_CTRL_K_ACTION_ID } from '../../../actionIDs.js';
-import { useRefState } from '../util/helpers.js';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { isFeatureNameDisabled } from '../../../../../../../workbench/contrib/void/common/voidSettingsTypes.js';
-
-
-
+import { VOID_CTRL_K_ACTION_ID } from '../../../actionIDs.js';
+import { QuickEditPropsType } from '../../../quickEditActions.js';
+import { VoidChatArea } from '../sidebar-tsx/ChatArea.js';
+import { useRefState } from '../util/helpers.js';
+import { TextAreaFns, VoidInputBox2 } from '../util/inputs.js';
+import { useAccessor, useCtrlKZoneStreamingState, useSettingsState } from '../util/services.js';
 
 export const QuickEditChat = ({
 	diffareaid,

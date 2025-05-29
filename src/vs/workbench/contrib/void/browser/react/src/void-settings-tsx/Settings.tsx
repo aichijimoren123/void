@@ -3,22 +3,21 @@
  *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
  *--------------------------------------------------------------------------------------*/
 
-import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react'; // Added useRef import just in case it was missed, though likely already present
-import { ProviderName, SettingName, displayInfoOfSettingName, providerNames, VoidStatefulModelInfo, customSettingNamesOfProvider, RefreshableProviderName, refreshableProviderNames, displayInfoOfProviderName, nonlocalProviderNames, localProviderNames, GlobalSettingName, featureNames, displayInfoOfFeatureName, isProviderNameDisabled, FeatureName, hasDownloadButtonsOnModelsProviderNames, subTextMdOfProviderName } from '../../../../common/voidSettingsTypes.js'
-import ErrorBoundary from '../sidebar-tsx/ErrorBoundary.js'
-import { VoidButtonBgDarken, VoidCustomDropdownBox, VoidInputBox2, VoidSimpleInputBox, VoidSwitch } from '../util/inputs.js'
-import { useAccessor, useIsDark, useRefreshModelListener, useRefreshModelState, useSettingsState } from '../util/services.js'
-import { X, RefreshCw, Loader2, Check, Asterisk, Plus } from 'lucide-react'
-import { URI } from '../../../../../../../base/common/uri.js'
-import { ModelDropdown } from './ModelDropdown.js'
-import { ChatMarkdownRender } from '../markdown/ChatMarkdownRender.js'
-import { WarningBox } from './WarningBox.js'
-import { os } from '../../../../common/helpers/systemInfo.js'
-import { IconLoading } from '../sidebar-tsx/SidebarChat.js'
-import { ToolApprovalType, toolApprovalTypes } from '../../../../common/toolsServiceTypes.js'
-import Severity from '../../../../../../../base/common/severity.js'
+import { Asterisk, Check, Loader2, Plus, RefreshCw, X } from 'lucide-react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'; // Added useRef import just in case it was missed, though likely already present
+import Severity from '../../../../../../../base/common/severity.js';
+import { os } from '../../../../common/helpers/systemInfo.js';
 import { getModelCapabilities, modelOverrideKeys, ModelOverrides } from '../../../../common/modelCapabilities.js';
-import { TransferEditorType, TransferFilesInfo } from '../../../extensionTransferTypes.js';
+import { ToolApprovalType, toolApprovalTypes } from '../../../../common/toolsServiceTypes.js';
+import { customSettingNamesOfProvider, displayInfoOfFeatureName, displayInfoOfProviderName, displayInfoOfSettingName, GlobalSettingName, isProviderNameDisabled, localProviderNames, nonlocalProviderNames, ProviderName, providerNames, RefreshableProviderName, refreshableProviderNames, SettingName, subTextMdOfProviderName, VoidStatefulModelInfo } from '../../../../common/voidSettingsTypes.js';
+import { TransferEditorType } from '../../../extensionTransferTypes.js';
+import { ChatMarkdownRender } from '../markdown/ChatMarkdownRender.js';
+import ErrorBoundary from '../sidebar-tsx/ErrorBoundary.js';
+import { IconLoading } from '../sidebar-tsx/Icons.js';
+import { VoidButtonBgDarken, VoidCustomDropdownBox, VoidInputBox2, VoidSimpleInputBox, VoidSwitch } from '../util/inputs.js';
+import { useAccessor, useIsDark, useRefreshModelListener, useRefreshModelState, useSettingsState } from '../util/services.js';
+import { ModelDropdown } from './ModelDropdown.js';
+import { WarningBox } from './WarningBox.js';
 
 const ButtonLeftTextRightOption = ({ text, leftButton }: { text: string, leftButton?: React.ReactNode }) => {
 
