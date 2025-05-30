@@ -1,15 +1,14 @@
-import { URI } from '../../../../../../../../base/common/uri.js'
-import { CopyButton, EditToolAcceptRejectButtonsHTML, useEditToolStreamState } from '../../markdown/ApplyBlockHoverButtons.js'
-import { ChatMarkdownRender, getApplyBoxId } from '../../markdown/ChatMarkdownRender.js'
-import { useAccessor } from '../../util/services.js'
-import { SmallProseWrapper } from '../Prose.js'
-import { getTitle, toolNameToDesc, voidOpenFileFn } from '../utils.js'
+import { URI } from '../../../../../../../base/common/uri.js'
+import { CopyButton, EditToolAcceptRejectButtonsHTML, useEditToolStreamState } from '../markdown/ApplyBlockHoverButtons.js'
+import { ChatMarkdownRender, getApplyBoxId } from '../markdown/ChatMarkdownRender.js'
+import { useAccessor } from '../util/services.js'
 import { BottomChildren } from './BottomChildren.js'
 import { CodeChildren } from './CodeChildren.js'
+import { SmallProseWrapper } from './Prose.js'
 import { ToolChildrenWrapper } from './ToolChildren.js'
-import { ToolHeaderWrapper } from './ToolHeader.js'
+import { ToolHeaderParams, ToolHeaderWrapper } from './ToolHeader.js'
 import { ResultWrapper } from './ToolName2Component.js'
-import { ToolHeaderParams } from './type.js'
+import { getTitle, toolNameToDesc, voidOpenFileFn } from './utils.js'
 
 const EditToolHeaderButtons = ({ applyBoxId, uri, codeStr, toolName, threadId }: { threadId: string, applyBoxId: string, uri: URI, codeStr: string, toolName: 'edit_file' | 'rewrite_file' }) => {
 	const { streamState } = useEditToolStreamState({ applyBoxId, uri })

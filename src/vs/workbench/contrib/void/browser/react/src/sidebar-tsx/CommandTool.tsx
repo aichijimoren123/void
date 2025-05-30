@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react'
-import { ToolMessage } from '../../../../../common/chatThreadServiceTypes.js'
-import { persistentTerminalNameOfId } from '../../../../terminalToolService.js'
-import { BlockCode } from '../../util/inputs.js'
-import { useAccessor, useChatThreadsStreamState } from '../../util/services.js'
-import { getTitle, toolNameToDesc } from '../utils.js'
+import { ToolMessage } from '../../../../common/chatThreadServiceTypes.js'
+import { persistentTerminalNameOfId } from '../../../terminalToolService.js'
+import { BlockCode } from '../util/inputs.js'
+import { useAccessor, useChatThreadsStreamState } from '../util/services.js'
 import { BottomChildren } from './BottomChildren.js'
 import { CodeChildren } from './CodeChildren.js'
 import { ToolChildrenWrapper } from './ToolChildren.js'
 import { ToolHeaderParams, ToolHeaderWrapper } from './ToolHeader.js'
+import { getTitle, toolNameToDesc } from './utils.js'
 
 export const CommandTool = ({ toolMessage, type, threadId }: { threadId: string } & ({
 	toolMessage: Exclude<ToolMessage<'run_command'>, { type: 'invalid_params' }>

@@ -14,13 +14,13 @@ import { WarningBox } from '../void-settings-tsx/WarningBox.js';
 import { VoidChatArea } from './ChatArea.js';
 import { ChatBubble } from './ChatBubble.js';
 import { CommandBarInChat } from './CommandBarInChat.js';
+import { EditToolSoFar } from './EditToolSoFar.js';
 import ErrorBoundary from './ErrorBoundary.js';
 import { ErrorDisplay } from './ErrorDisplay.js';
 import { IconLoading } from './Icons.js';
 import { ProseWrapper } from './Prose.js';
 import { scrollToBottom, ScrollToBottomContainer } from './ScrollToBottom.js';
 import { PastThreadsList } from './SidebarThreadSelector.js';
-import { EditToolSoFar } from './tools/EditToolSoFar.js';
 
 export const SidebarChat = () => {
 	const textAreaRef = useRef<HTMLTextAreaElement | null>(null)

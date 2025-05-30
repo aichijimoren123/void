@@ -1,20 +1,19 @@
-import { URI } from '../../../../../../../../base/common/uri.js';
-import { ToolMessage } from '../../../../../common/chatThreadServiceTypes.js';
-import { MAX_FILE_CHARS_PAGE, ToolName } from '../../../../../common/prompt/prompts.js';
-import { LintErrorItem } from '../../../../../common/toolsServiceTypes.js';
-import { persistentTerminalNameOfId } from '../../../../terminalToolService.js';
-import { ChatMarkdownRender } from '../../markdown/ChatMarkdownRender.js';
-import { useAccessor } from '../../util/services.js';
-import { SmallProseWrapper } from '../Prose.js';
-import { getBasename, getRelative, getTitle, toolNameToDesc, voidOpenFileFn } from '../utils.js';
+import { URI } from '../../../../../../../base/common/uri.js';
+import { ToolMessage } from '../../../../common/chatThreadServiceTypes.js';
+import { MAX_FILE_CHARS_PAGE, ToolName } from '../../../../common/prompt/prompts.js';
+import { LintErrorItem } from '../../../../common/toolsServiceTypes.js';
+import { persistentTerminalNameOfId } from '../../../terminalToolService.js';
+import { ChatMarkdownRender } from '../markdown/ChatMarkdownRender.js';
+import { useAccessor } from '../util/services.js';
 import { BottomChildren } from './BottomChildren.js';
 import { CodeChildren } from './CodeChildren.js';
 import { CommandTool } from './CommandTool.js';
 import { EditTool } from './EditTool.js';
 import { ListableToolItem } from './ListableToolItem.js';
+import { SmallProseWrapper } from './Prose.js';
 import { ToolChildrenWrapper } from './ToolChildren.js';
-import { ToolHeaderWrapper } from './ToolHeader.js';
-import { ToolHeaderParams } from './type.js';
+import { ToolHeaderParams, ToolHeaderWrapper } from './ToolHeader.js';
+import { getBasename, getRelative, getTitle, toolNameToDesc, voidOpenFileFn } from './utils.js';
 
 const LintErrorChildren = ({ lintErrors }: { lintErrors: LintErrorItem[] }) => {
 	return <div className="text-xs text-void-fg-4 opacity-80 border-l-2 border-void-warning px-2 py-0.5 flex flex-col gap-0.5 overflow-x-auto whitespace-nowrap">

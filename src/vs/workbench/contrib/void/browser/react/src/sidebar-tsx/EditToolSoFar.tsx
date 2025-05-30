@@ -1,13 +1,13 @@
-import { URI } from '../../../../../../../../base/common/uri.js'
-import { RawToolCallObj } from '../../../../../common/sendLLMMessageTypes.js'
-import { useAccessor } from '../../util/services.js'
-import { IconLoading } from '../Icons.js'
-import { getBasename, titleOfToolName, voidOpenFileFn } from '../utils.js'
+
+import { URI } from '../../../../../../../base/common/uri.js'
+import { RawToolCallObj } from '../../../../common/sendLLMMessageTypes.js'
+import { useAccessor } from '../util/services.js'
 import { EditToolChildren } from './EditTool.js'
+import { IconLoading } from './Icons.js'
 import { ToolHeaderWrapper } from './ToolHeader.js'
+import { getBasename, titleOfToolName, voidOpenFileFn } from './utils.js'
 
 export const EditToolSoFar = ({ toolCallSoFar, }: { toolCallSoFar: RawToolCallObj }) => {
-
 
 	const accessor = useAccessor()
 

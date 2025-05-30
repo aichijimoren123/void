@@ -4,8 +4,8 @@ import { ChatMarkdownRender, ChatMessageLocation } from '../markdown/ChatMarkdow
 import { useAccessor } from '../util/services.js'
 import { IconLoading } from './Icons.js'
 import { ProseWrapper, SmallProseWrapper } from './Prose.js'
-import { ToolChildrenWrapper } from './tools/ToolChildren.js'
-import { ToolHeaderWrapper } from './tools/ToolHeader.js'
+import { ToolChildrenWrapper } from './ToolChildren.js'
+import { ToolHeaderWrapper } from './ToolHeader.js'
 
 const ReasoningWrapper = ({ isDoneReasoning, isStreaming, children }: { isDoneReasoning: boolean, isStreaming: boolean, children: React.ReactNode }) => {
 	const isDone = isDoneReasoning || !isStreaming
