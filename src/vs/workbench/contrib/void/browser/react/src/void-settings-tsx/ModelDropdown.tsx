@@ -8,7 +8,7 @@ import { modelFilterOfFeatureName, ModelOption } from '../../../../../../../work
 import { FeatureName, isFeatureNameDisabled, modelSelectionsEqual } from '../../../../../../../workbench/contrib/void/common/voidSettingsTypes.js'
 import { VOID_OPEN_SETTINGS_ACTION_ID } from '../../../voidSettingsPane.js'
 import ErrorBoundary from '../sidebar-tsx/ErrorBoundary.js'
-import { VoidCustomDropdownBox } from '../util/inputs.js'
+import { VoidCustomDropdownBox } from '../util/DropdownBox.js'
 import { useAccessor, useSettingsState } from '../util/services.js'
 import { WarningBox } from './WarningBox.js'
 

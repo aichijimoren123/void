@@ -12,7 +12,7 @@ import { CodespanLocationLink } from '../../../../common/chatThreadServiceTypes.
 import { convertToVscodeLang, detectLanguage } from '../../../../common/helpers/languageHelpers.js'
 import { separateOutFirstLine } from '../../../../common/helpers/util.js'
 import { getBasename, getRelative, voidOpenFileFn } from '../sidebar-tsx/utils.js'
-import { BlockCode } from '../util/inputs.js'
+import { BlockCode } from '../util/CodeBlock.js'
 import { useAccessor } from '../util/services.js'
 import { BlockCodeApplyWrapper } from './ApplyBlockHoverButtons.js'
 

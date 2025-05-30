@@ -14,8 +14,12 @@ import { TransferEditorType } from '../../../extensionTransferTypes.js';
 import { ChatMarkdownRender } from '../markdown/ChatMarkdownRender.js';
 import ErrorBoundary from '../sidebar-tsx/ErrorBoundary.js';
 import { IconLoading } from '../sidebar-tsx/Icons.js';
-import { VoidButtonBgDarken, VoidCustomDropdownBox, VoidInputBox2, VoidSimpleInputBox, VoidSwitch } from '../util/inputs.js';
+import { VoidButtonBgDarken } from '../util/DarkButton.js';
+import { VoidCustomDropdownBox } from '../util/DropdownBox.js';
+import { VoidInputBox2 } from '../util/inputs.js';
 import { useAccessor, useIsDark, useRefreshModelListener, useRefreshModelState, useSettingsState } from '../util/services.js';
+import { VoidSimpleInputBox } from '../util/SimpleInput.js';
+import { VoidSwitch } from '../util/Switch.js';
 import { ModelDropdown } from './ModelDropdown.js';
 import { WarningBox } from './WarningBox.js';
 

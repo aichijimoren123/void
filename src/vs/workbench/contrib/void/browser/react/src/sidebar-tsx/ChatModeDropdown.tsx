@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { ChatMode } from '../../../../common/voidSettingsTypes.js'
-import { VoidCustomDropdownBox } from '../util/inputs.js'
+import { VoidCustomDropdownBox } from '../util/DropdownBox.js'
 import { useAccessor, useSettingsState } from '../util/services.js'
 
 const nameOfChatMode = {

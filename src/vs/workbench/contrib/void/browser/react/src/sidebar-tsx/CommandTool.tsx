@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { ToolMessage } from '../../../../common/chatThreadServiceTypes.js'
 import { persistentTerminalNameOfId } from '../../../terminalToolService.js'
-import { BlockCode } from '../util/inputs.js'
+import { BlockCode } from '../util/CodeBlock.js'
 import { useAccessor, useChatThreadsStreamState } from '../util/services.js'
 import { BottomChildren } from './BottomChildren.js'
 import { CodeChildren } from './CodeChildren.js'
