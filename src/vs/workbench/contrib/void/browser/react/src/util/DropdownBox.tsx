@@ -1,6 +1,20 @@
 import { autoUpdate, flip, offset, shift, size, useFloating } from "@floating-ui/react";
 import { useEffect, useRef, useState } from "react";
 
+const CheckmarkIcon = () => {
+    return (
+        <svg className="size-3" viewBox="0 0 12 12" fill="none">
+            <path
+                d="M10 3L4.5 8.5L2 6"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
+    )
+}
+
 export const VoidCustomDropdownBox = <T extends NonNullable<any>>({
     options,
     selectedOption,
@@ -166,7 +180,7 @@ export const VoidCustomDropdownBox = <T extends NonNullable<any>>({
             {isOpen && (
                 <div
                     ref={refs.setFloating}
-                    className="z-[100] bg-void-bg-1 border-void-border-3 border rounded shadow-lg"
+                    className="z-[100] bg-void-bg-1 border-void-border-3 border rounded-md shadow-lg"
                     style={{
                         position: strategy,
                         top: y ?? 0,
@@ -179,7 +193,9 @@ export const VoidCustomDropdownBox = <T extends NonNullable<any>>({
                             ))
                     }}
                     onWheel={(e) => e.stopPropagation()}
-                ><div className='overflow-auto max-h-80'>
+                >
+                    {/* Options */}
+                    <div className='overflow-auto max-h-80 px-1 py-1 flex flex-col gap-1'>
 
                         {options.map((option) => {
                             const thisOptionIsSelected = getOptionsEqual(option, selectedOption);
@@ -189,31 +205,20 @@ export const VoidCustomDropdownBox = <T extends NonNullable<any>>({
                             return (
                                 <div
                                     key={optionName}
-                                    className={`flex items-center px-2 py-1 pr-4 cursor-pointer whitespace-nowrap
-                                    transition-all duration-100
-                                    ${thisOptionIsSelected ? 'bg-blue-500 text-white/80' : 'hover:bg-blue-500 hover:text-white/80'}
+                                    className={`flex items-center px-[5px] py-[2px]  cursor-pointer whitespace-nowrap
+                                    transition-all duration-100 rounded-md
+                                    ${thisOptionIsSelected ? 'text-white/80' : 'hover:bg-ide-selection-color hover:text-white/80'}
                                 `}
                                     onClick={() => {
                                         onChangeOption(option);
                                         setIsOpen(false);
                                     }}
                                 >
-                                    <div className="w-4 flex justify-center flex-shrink-0">
-                                        {thisOptionIsSelected && (
-                                            <svg className="size-3" viewBox="0 0 12 12" fill="none">
-                                                <path
-                                                    d="M10 3L4.5 8.5L2 6"
-                                                    stroke="currentColor"
-                                                    strokeWidth="1.5"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                        )}
-                                    </div>
                                     <span className="flex justify-between items-center w-full gap-x-1">
                                         <span>{optionName}</span>
-                                        <span className='opacity-60'>{optionDetail}</span>
+                                        <div className="w-4 flex justify-center flex-shrink-0">
+                                            {thisOptionIsSelected && <CheckmarkIcon />}
+                                        </div>
                                     </span>
                                 </div>
                             );

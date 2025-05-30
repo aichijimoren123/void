@@ -12,6 +12,8 @@ import { VoidCustomDropdownBox } from '../util/DropdownBox.js'
 import { useAccessor, useSettingsState } from '../util/services.js'
 import { WarningBox } from './WarningBox.js'
 
+// 比较两个模型选项数组是否相等
+// 用于性能优化，避免不必要的重新渲染
 const optionsEqual = (m1: ModelOption[], m2: ModelOption[]) => {
 	if (m1.length !== m2.length) return false
 	for (let i = 0; i < m1.length; i++) {
@@ -20,6 +22,8 @@ const optionsEqual = (m1: ModelOption[], m2: ModelOption[]) => {
 	return true
 }
 
+    // 渲染实际的下拉选择框
+    // 处理模型选择逻辑
 const ModelSelectBox = ({ options, featureName, className }: { options: ModelOption[], featureName: FeatureName, className: string }) => {
 	const accessor = useAccessor()
 	const voidSettingsService = accessor.get('IVoidSettingsService')
@@ -44,7 +48,8 @@ const ModelSelectBox = ({ options, featureName, className }: { options: ModelOpt
 	/>
 }
 
-
+    // 带记忆化的模型下拉框
+    // 根据特性名过滤可用模型
 const MemoizedModelDropdown = ({ featureName, className }: { featureName: FeatureName, className: string }) => {
 	const settingsState = useSettingsState()
 	const oldOptionsRef = useRef<ModelOption[]>([])
@@ -70,6 +75,8 @@ const MemoizedModelDropdown = ({ featureName, className }: { featureName: Featur
 
 }
 
+    // 主要的导出组件
+    // 处理各种状态和错误情况
 export const ModelDropdown = ({ featureName, className }: { featureName: FeatureName, className: string }) => {
 	const settingsState = useSettingsState()
 
