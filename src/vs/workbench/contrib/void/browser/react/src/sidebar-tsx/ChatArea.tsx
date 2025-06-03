@@ -216,6 +216,7 @@ export const VoidChatArea: React.FC<VoidChatAreaProps> = ({
 
 			{/* Input section */}
 			<div className="relative w-full">
+				{/* 输入框 */}
 				{children}
 
 				{/* Close button (X) if onClose is provided */}

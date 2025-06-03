@@ -7,6 +7,7 @@ import React, { forwardRef, ForwardRefExoticComponent, RefAttributes, useCallbac
 
 import { autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/react';
 import { ChevronRight, File, Folder, LucideProps } from 'lucide-react';
+import { Tooltip } from 'react-tooltip';
 import { URI } from '../../../../../../../base/common/uri.js';
 import { inputBackground, inputForeground } from '../../../../../../../platform/theme/common/colorRegistry.js';
 import { asCssVariable } from '../../../../../../../platform/theme/common/colorUtils.js';
@@ -312,9 +313,12 @@ type InputBox2Props = {
 	onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
 	onChangeHeight?: (newHeight: number) => void;
 }
-export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(function X({ initValue, placeholder, multiline, enableAtToMention, fnsRef, className, onKeyDown, onFocus, onBlur, onChangeText }, ref) {
 
-
+// 支持多行/单行文本输入
+// 实现了 @ 提及功能，可以搜索并选择文件或文件夹
+// 支持自动高度调整
+// 提供了文件和文件夹的层级导航功能
+export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(({ initValue, placeholder, multiline, enableAtToMention, fnsRef, className, onKeyDown, onFocus, onBlur, onChangeText }, ref) => {
 	// mirrors whatever is in ref
 	const accessor = useAccessor()
 
@@ -329,7 +333,7 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 		_setIsMenuOpen(value);
 	}
 
-	// logic for @ to mention vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+	// logic for @ to mention
 	const [optionPath, setOptionPath] = useState<string[]>([]);
 	const [optionIdx, setOptionIdx] = useState<number>(0);
 	const [options, setOptions] = useState<Option[]>([]);
@@ -342,6 +346,8 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 	const isTypingEnabled = true
 	const isBreadcrumbsShowing = optionPath.length === 0 && !optionText ? false : true
 
+	// 在光标位置插入文本
+	// 处理 @ 符号的删除和新文本的插入
 	const insertTextAtCursor = (text: string) => {
 		const textarea = textAreaRef.current;
 		if (!textarea) return;
@@ -374,6 +380,9 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 	};
 
 
+	// 处理选项选择
+	// 支持文件和文件夹的选择
+    // 更新选择路径
 	const onSelectOption = async () => {
 
 		if (!options.length) { return; }
@@ -627,6 +636,7 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 		whileElementsMounted: autoUpdate,
 		strategy: 'fixed',
 	});
+
 	useEffect(() => {
 		if (!isMenuOpen) return;
 
@@ -650,11 +660,11 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => document.removeEventListener('mousedown', handleClickOutside);
 	}, [isMenuOpen, refs.floating, refs.reference]);
-	// logic for @ to mention ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
+	// logic for @ to mention
 	const [isEnabled, setEnabled] = useState(true)
 
+	// 自动调整输入框高度
 	const adjustHeight = useCallback(() => {
 		const r = textAreaRef.current
 		if (!r) return
@@ -681,15 +691,10 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 		disable: () => { setEnabled(false) },
 	}), [onChangeText, adjustHeight])
 
-
-
 	useEffect(() => {
 		if (initValue)
 			fns.setValue(initValue)
 	}, [initValue])
-
-
-
 
 	return <>
 		<textarea
@@ -729,9 +734,9 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 			}, [onOpenOptionMenu, accessor])}
 
 			onChange={useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
-				const r = textAreaRef.current
-				if (!r) return
-				onChangeText?.(r.value)
+				const textAreaRefCurrent = textAreaRef.current
+				if (!textAreaRefCurrent) return
+				onChangeText?.(textAreaRefCurrent.value)
 				adjustHeight()
 			}, [onChangeText, adjustHeight])}
 
@@ -767,7 +772,7 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 		{isMenuOpen && (
 			<div
 				ref={refs.setFloating}
-				className="z-[100] border-void-border-3 bg-void-bg-2-alt border rounded shadow-lg flex flex-col overflow-hidden"
+				className="z-[100] border-void-border-3 max-w-[350px] bg-void-bg-2-alt border rounded-md shadow-lg flex flex-col overflow-hidden"
 				style={{
 					position: strategy,
 					top: y ?? 0,
@@ -794,8 +799,8 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 
 
 				{/* Options list */}
-				<div className='max-h-[400px] w-full max-w-full overflow-y-auto overflow-x-auto'>
-					<div className="w-max min-w-full flex flex-col gap-0 text-nowrap flex-nowrap">
+				<div className='max-h-[400px] overflow-y-auto'>
+					<div className="flex flex-col gap-0 text-nowrap flex-nowrap p-1">
 						{options.length === 0 ?
 							<div className="text-void-fg-3 px-3 py-0.5">No results found</div>
 							: options.map((o, oIdx) => {
@@ -803,22 +808,25 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 								return (
 									// Option
 									<div
+										// 当选项被选中时，设置为选中状态
 										ref={oIdx === optionIdx ? selectedOptionRef : null}
+										// 设置选项的唯一标识
 										key={o.fullName}
 										className={`
-											flex items-center gap-2
-											px-3 py-1 cursor-pointer
-											${oIdx === optionIdx ? 'bg-blue-500 text-white/80' : 'bg-void-bg-2-alt text-void-fg-1'}
+											flex items-center gap-2 overflow-hidden
+											px-3 py-1 cursor-pointer rounded-md
+											${oIdx === optionIdx ? 'bg-ide-selection-color text-white/80' : 'bg-void-bg-2-alt text-void-fg-1'}
 										`}
 										onClick={() => { onSelectOption(); }}
 										onMouseMove={() => { setOptionIdx(oIdx) }}
 									>
+										{/* 显示选项的图标 */}
 										{<o.iconInMenu size={12} />}
-
+										{/* 显示选项的缩写名称 */}
 										<span>{o.abbreviatedName}</span>
-
-										{o.fullName && o.fullName !== o.abbreviatedName && <span className="opacity-60 text-sm">{o.fullName}</span>}
-
+										{/* 显示选项的完整名称 */}
+										{o.fullName && o.fullName !== o.abbreviatedName && <span className="opacity-60 text-sm overflow-hidden">{o.fullName}</span>}
+										{/* 显示选项的子选项 */}
 										{o.nextOptions || o.generateNextOptions ? (
 											<ChevronRight size={12} />
 										) : null}
@@ -828,6 +836,7 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 							})
 						}
 					</div>
+					<Tooltip id="void-tooltip" />
 				</div>
 			</div>
 		)}

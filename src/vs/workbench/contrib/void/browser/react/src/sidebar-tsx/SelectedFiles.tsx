@@ -6,18 +6,17 @@ import { useAccessor, useActiveURI } from '../util/services.js';
 import { IconX } from './Icons.js';
 import { getBasename, voidOpenFileFn } from './utils.js';
 
-export const SelectedFiles = (
-	{ type, selections, setSelections, showProspectiveSelections, messageIdx, }:
-		| { type: 'past', selections: StagingSelectionItem[]; setSelections?: undefined, showProspectiveSelections?: undefined, messageIdx: number, }
-		| { type: 'staging', selections: StagingSelectionItem[]; setSelections: ((newSelections: StagingSelectionItem[]) => void), showProspectiveSelections?: boolean, messageIdx?: number }
-) => {
+type SelectedFilesProps ={ type: 'past', selections: StagingSelectionItem[]; setSelections?: undefined, showProspectiveSelections?: undefined, messageIdx: number, }
+| { type: 'staging', selections: StagingSelectionItem[]; setSelections: ((newSelections: StagingSelectionItem[]) => void), showProspectiveSelections?: boolean, messageIdx?: number }
+
+// 主要用于显示和管理已选择的文件列表，包括当前文件、最近文件和潜在文件（在聊天框里显示）
+// 支持两种模式：'past'（历史）和 'staging'（暂存）
+// 提供文件预览和交互功能
+export const SelectedFiles = ({ type, selections, setSelections, showProspectiveSelections, messageIdx }: SelectedFilesProps) => {
 
 	const accessor = useAccessor()
 	const commandService = accessor.get('ICommandService')
 	const modelReferenceService = accessor.get('IVoidModelService')
-
-
-
 
 	// state for tracking prospective files
 	const { uri: currentURI } = useActiveURI()
