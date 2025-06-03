@@ -9,6 +9,7 @@ import { IDisposable } from '../../base/common/lifecycle.js';
 import { equals } from '../../base/common/objects.js';
 import { ThemeColor } from '../../base/common/themables.js';
 import { URI } from '../../base/common/uri.js';
+import { UndoRedoGroup } from '../../platform/undoRedo/common/undoRedo.js';
 import { ISingleEditOperation } from './core/editOperation.js';
 import { IPosition, Position } from './core/position.js';
 import { IRange, Range } from './core/range.js';
@@ -16,15 +17,14 @@ import { Selection } from './core/selection.js';
 import { TextChange } from './core/textChange.js';
 import { WordCharacterClassifier } from './core/wordCharacterClassifier.js';
 import { IWordAtPosition } from './core/wordHelper.js';
+import { IEditorModel } from './editorCommon.js';
 import { FormattingOptions } from './languages.js';
 import { ILanguageSelection } from './languages/language.js';
 import { IBracketPairsTextModelPart } from './textModelBracketPairs.js';
 import { IModelContentChange, IModelContentChangedEvent, IModelDecorationsChangedEvent, IModelLanguageChangedEvent, IModelLanguageConfigurationChangedEvent, IModelOptionsChangedEvent, IModelTokensChangedEvent, InternalModelContentChangeEvent, ModelInjectedTextChangedEvent } from './textModelEvents.js';
 import { IGuidesTextModelPart } from './textModelGuides.js';
 import { ITokenizationTextModelPart } from './tokenizationTextModelPart.js';
-import { UndoRedoGroup } from '../../platform/undoRedo/common/undoRedo.js';
 import { TokenArray } from './tokens/tokenArray.js';
-import { IEditorModel } from './editorCommon.js';
 
 /**
  * Vertical Lane in the overview ruler of the editor.

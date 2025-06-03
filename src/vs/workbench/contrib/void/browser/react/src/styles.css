@@ -31,6 +31,8 @@
 
 	--void-ring-color: #007FD4;
 	--void-link-color: #007FD4;
+
+	--ide-selection-color: #16385b;
 }
 
 .select-child-restyle select {

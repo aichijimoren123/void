@@ -3,12 +3,12 @@
  *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
  *--------------------------------------------------------------------------------------*/
 
+import { getActiveWindow, h } from '../../../../base/browser/dom.js';
 import { Disposable, toDisposable } from '../../../../base/common/lifecycle.js';
+import { ServicesAccessor } from '../../../../editor/browser/editorExtensions.js';
 import { IInstantiationService } from '../../../../platform/instantiation/common/instantiation.js';
 import { IWorkbenchContribution, registerWorkbenchContribution2, WorkbenchPhase } from '../../../common/contributions.js';
-import { ServicesAccessor } from '../../../../editor/browser/editorExtensions.js';
 import { mountVoidTooltip } from './react/out/void-tooltip/index.js';
-import { h, getActiveWindow } from '../../../../base/browser/dom.js';
 
 // Tooltip contribution that mounts the component at startup
 export class TooltipContribution extends Disposable implements IWorkbenchContribution {

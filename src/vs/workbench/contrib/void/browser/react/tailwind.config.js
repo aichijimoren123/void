@@ -73,7 +73,7 @@ module.exports = {
 
 				'void-ring-color': 'var(--void-ring-color)',
 				'void-link-color': 'var(--void-link-color)',
-
+				'ide-selection-color': 'var(--ide-selection-color)',
 				vscode: {
 					// see: https://code.visualstudio.com/api/extension-guides/webview#theming-webview-content
 
@@ -194,6 +194,6 @@ module.exports = {
 	plugins: [
 		require('@tailwindcss/typography')
 	],
-	prefix: 'void-'
+	prefix: 'ide-'
 }
 

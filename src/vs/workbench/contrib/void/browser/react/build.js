@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------*/
 
 import { execSync } from 'child_process';
-import { spawn } from 'cross-spawn'
+import { spawn } from 'cross-spawn';
 // Added lines below
 import fs from 'fs';
 import path from 'path';
@@ -87,7 +87,7 @@ if (isWatch) {
 		try {
 			console.log('🔨 Running initial scope-tailwind build to create src2 folder...');
 			execSync(
-				'npx scope-tailwind ./src -o src2/ -s void-scope -c styles.css -p "void-"',
+				'npx scope-tailwind ./src -o src2/ -s void-scope -c styles.css -p "ide-"',
 				{ stdio: 'inherit' }
 			);
 			console.log('✅ src2/ created successfully.');
@@ -103,7 +103,7 @@ if (isWatch) {
 		'--watch', 'src',
 		'--ext', 'ts,tsx,css',
 		'--exec',
-		'npx scope-tailwind ./src -o src2/ -s void-scope -c styles.css -p "void-"'
+		'npx scope-tailwind ./src -o src2/ -s void-scope -c styles.css -p "ide-"'
 	]);
 
 	const tsupWatcher = spawn('npx', [
@@ -145,7 +145,7 @@ if (isWatch) {
 	console.log('📦 Building...');
 
 	// Run scope-tailwind once
-	execSync('npx scope-tailwind ./src -o src2/ -s void-scope -c styles.css -p "void-"', { stdio: 'inherit' });
+	execSync('npx scope-tailwind ./src -o src2/ -s void-scope -c styles.css -p "ide-"', { stdio: 'inherit' });
 
 	// Run tsup once
 	execSync('npx tsup', { stdio: 'inherit' });

@@ -3,28 +3,26 @@
  *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
  *--------------------------------------------------------------------------------------*/
 
-import React, { forwardRef, ForwardRefExoticComponent, MutableRefObject, RefAttributes, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, ForwardRefExoticComponent, RefAttributes, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { IInputBoxStyles, InputBox } from '../../../../../../../base/browser/ui/inputbox/inputBox.js';
-import { defaultCheckboxStyles, defaultInputBoxStyles, defaultSelectBoxStyles } from '../../../../../../../platform/theme/browser/defaultStyles.js';
 import { SelectBox } from '../../../../../../../base/browser/ui/selectBox/selectBox.js';
-import { IDisposable } from '../../../../../../../base/common/lifecycle.js';
 import { Checkbox } from '../../../../../../../base/browser/ui/toggle/toggle.js';
+import { IDisposable } from '../../../../../../../base/common/lifecycle.js';
+import { defaultCheckboxStyles, defaultInputBoxStyles, defaultSelectBoxStyles } from '../../../../../../../platform/theme/browser/defaultStyles.js';
 
-import { CodeEditorWidget } from '../../../../../../../editor/browser/widget/codeEditor/codeEditorWidget.js'
-import { useAccessor } from './services.js';
-import { ITextModel } from '../../../../../../../editor/common/model.js';
-import { asCssVariable } from '../../../../../../../platform/theme/common/colorUtils.js';
-import { inputBackground, inputForeground } from '../../../../../../../platform/theme/common/colorRegistry.js';
-import { useFloating, autoUpdate, offset, flip, shift, size, autoPlacement } from '@floating-ui/react';
+import { autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/react';
+import { ChevronRight, File, Folder, LucideProps } from 'lucide-react';
 import { URI } from '../../../../../../../base/common/uri.js';
-import { getBasename, getFolderName } from '../sidebar-tsx/SidebarChat.js';
-import { ChevronRight, File, Folder, FolderClosed, LucideProps } from 'lucide-react';
-import { StagingSelectionItem } from '../../../../common/chatThreadServiceTypes.js';
+import { CodeEditorWidget } from '../../../../../../../editor/browser/widget/codeEditor/codeEditorWidget.js';
 import { DiffEditorWidget } from '../../../../../../../editor/browser/widget/diffEditor/diffEditorWidget.js';
-import { extractSearchReplaceBlocks, ExtractedSearchReplaceBlock } from '../../../../common/helpers/extractCodeFromResult.js';
-import { IAccessibilitySignalService } from '../../../../../../../platform/accessibilitySignal/browser/accessibilitySignalService.js';
-import { IEditorProgressService } from '../../../../../../../platform/progress/common/progress.js';
+import { ITextModel } from '../../../../../../../editor/common/model.js';
+import { inputBackground, inputForeground } from '../../../../../../../platform/theme/common/colorRegistry.js';
+import { asCssVariable } from '../../../../../../../platform/theme/common/colorUtils.js';
+import { StagingSelectionItem } from '../../../../common/chatThreadServiceTypes.js';
+import { ExtractedSearchReplaceBlock, extractSearchReplaceBlocks } from '../../../../common/helpers/extractCodeFromResult.js';
 import { detectLanguage } from '../../../../common/helpers/languageHelpers.js';
+import { getBasename } from '../sidebar-tsx/SidebarChat.js';
+import { useAccessor } from './services.js';
 
 
 // type guard
@@ -809,7 +807,7 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 		{isMenuOpen && (
 			<div
 				ref={refs.setFloating}
-				className="z-[100] border-void-border-3 bg-void-bg-2-alt border rounded shadow-lg flex flex-col overflow-hidden"
+				className="z-[100] border-void-border-3 bg-void-bg-2-alt border rounded-md shadow-lg flex flex-col overflow-hidden p-[2px]"
 				style={{
 					position: strategy,
 					top: y ?? 0,
@@ -836,7 +834,7 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 
 
 				{/* Options list */}
-				<div className='max-h-[400px] w-full max-w-full overflow-y-auto overflow-x-auto'>
+				<div className='max-h-[400px] w-full max-w-full overflow-y-auto overflow-x-auto '>
 					<div className="w-max min-w-full flex flex-col gap-0 text-nowrap flex-nowrap">
 						{options.length === 0 ?
 							<div className="text-void-fg-3 px-3 py-0.5">No results found</div>
@@ -848,9 +846,9 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 										ref={oIdx === optionIdx ? selectedOptionRef : null}
 										key={o.fullName}
 										className={`
-											flex items-center gap-2
-											px-3 py-1 cursor-pointer
-											${oIdx === optionIdx ? 'bg-blue-500 text-white/80' : 'bg-void-bg-2-alt text-void-fg-1'}
+											flex items-center gap-2 rounded-md
+											px-3 py-[2px] cursor-pointer
+											${oIdx === optionIdx ? 'bg-ide-selection-color text-white/80' : 'bg-void-bg-2-alt text-void-fg-1'}
 										`}
 										onClick={() => { onSelectOption(); }}
 										onMouseMove={() => { setOptionIdx(oIdx) }}
@@ -1416,7 +1414,7 @@ export const VoidCustomDropdownBox = <T extends NonNullable<any>>({
 			{isOpen && (
 				<div
 					ref={refs.setFloating}
-					className="z-[100] bg-void-bg-1 border-void-border-3 border rounded shadow-lg"
+					className="z-[100] bg-void-bg-1 border-void-border-3 border rounded-md shadow-lg"
 					style={{
 						position: strategy,
 						top: y ?? 0,
@@ -1429,7 +1427,8 @@ export const VoidCustomDropdownBox = <T extends NonNullable<any>>({
 							))
 					}}
 					onWheel={(e) => e.stopPropagation()}
-				><div className='overflow-auto max-h-80'>
+				>
+					<div className='overflow-auto max-h-80 p-[4px]'>
 
 						{options.map((option) => {
 							const thisOptionIsSelected = getOptionsEqual(option, selectedOption);
@@ -1439,9 +1438,9 @@ export const VoidCustomDropdownBox = <T extends NonNullable<any>>({
 							return (
 								<div
 									key={optionName}
-									className={`flex items-center px-2 py-1 pr-4 cursor-pointer whitespace-nowrap
-									transition-all duration-100
-									${thisOptionIsSelected ? 'bg-blue-500 text-white/80' : 'hover:bg-blue-500 hover:text-white/80'}
+									className={`flex items-center px-1 py-[2px] pr-4 cursor-pointer whitespace-nowrap rounded-md
+									transition-all duration-100 hover:bg-ide-selection-color hover:text-white/80
+
 								`}
 									onClick={() => {
 										onChangeOption(option);
