@@ -3098,7 +3098,6 @@ export const SidebarChat = () => {
 	</div>
 
 
-
 	const threadPageInput = <div key={'input' + chatThreadsState.currentThreadId}>
 		<div className='px-4'>
 			<CommandBarInChat />
