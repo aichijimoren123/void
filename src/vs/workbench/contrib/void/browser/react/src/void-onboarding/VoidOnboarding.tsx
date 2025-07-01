@@ -18,7 +18,8 @@ const OVERRIDE_VALUE = false
 export const VoidOnboarding = () => {
 
 	const voidSettingsState = useSettingsState()
-	const isOnboardingComplete = voidSettingsState.globalSettings.isOnboardingComplete || OVERRIDE_VALUE
+	const isOnboardingComplete =  OVERRIDE_VALUE
+	// || voidSettingsState.globalSettings.isOnboardingComplete
 
 	const isDark = useIsDark()
 
@@ -123,6 +124,7 @@ const featureNameMap: { display: string, featureName: FeatureName }[] = [
 	{ display: 'Quick Edit', featureName: 'Ctrl+K' },
 	{ display: 'Autocomplete', featureName: 'Autocomplete' },
 	{ display: 'Fast Apply', featureName: 'Apply' },
+	{ display: 'Source Control', featureName: 'SCM' },
 ];
 
 const AddProvidersPage = ({ pageIndex, setPageIndex }: { pageIndex: number, setPageIndex: (index: number) => void }) => {
@@ -595,13 +597,7 @@ const VoidOnboardingContent = () => {
 		0: <OnboardingPageShell
 			content={
 				<div className='flex flex-col items-center gap-8'>
-					<div className="text-5xl font-light text-center">Welcome to Void</div>
-
-					{/* Slice of Void image */}
-					<div className='max-w-md w-full h-[30vh] mx-auto flex items-center justify-center'>
-						{!isLinux && <VoidIcon />}
-					</div>
-
+					<div className="text-5xl font-light text-center">Welcome to Taycan</div>
 
 					<FadeIn
 						delayMs={1000}
