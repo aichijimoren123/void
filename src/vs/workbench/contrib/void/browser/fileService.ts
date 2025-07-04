@@ -12,16 +12,16 @@ import { IVoidModelService } from '../common/voidModelService.js';
 
 
 class FilePromptActionService extends Action2 {
-	private static readonly VOID_COPY_FILE_PROMPT_ID = 'void.copyfileprompt'
+	private static readonly TAYCAN_COPY_FILE_PROMPT_ID = 'taycan.copyfileprompt'
 
 	constructor() {
 		super({
-			id: FilePromptActionService.VOID_COPY_FILE_PROMPT_ID,
-			title: localize2('voidCopyPrompt', 'Void: Copy Prompt'),
+			id: FilePromptActionService.TAYCAN_COPY_FILE_PROMPT_ID,
+			title: localize2('taycanCopyPrompt', 'Taycan: Copy Prompt'),
 			menu: [{
-				id: MenuId.ExplorerContext,
-				group: '8_void',
-				order: 1,
+				id: MenuId.ExplorerContext, // 文件资源管理器右键菜单
+				group: '8_void', // 菜单组
+				order: 1, // 排序
 			}]
 		});
 	}

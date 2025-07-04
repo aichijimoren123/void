@@ -86,7 +86,7 @@ export type StagingSelectionItem = {
 	uri: URI;
 	language?: undefined;
 	state?: undefined;
-}
+} | { type: 'Image'; uri: URI; dataUrl?: string; name: string; state: { wasAddedAsCurrentFile: boolean } }
 
 
 // a link to a symbol (an underlined link to a piece of code)

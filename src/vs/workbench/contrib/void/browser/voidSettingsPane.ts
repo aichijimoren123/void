@@ -30,26 +30,26 @@ import { toDisposable } from '../../../../base/common/lifecycle.js';
 
 // refer to preferences.contribution.ts keybindings editor
 
-class VoidSettingsInput extends EditorInput {
+class TaycanSettingsInput extends EditorInput {
 
-	static readonly ID: string = 'workbench.input.void.settings';
+	static readonly ID: string = 'workbench.input.taycan.settings';
 
 	static readonly RESOURCE = URI.from({ // I think this scheme is invalid, it just shuts up TS
-		scheme: 'void',  // Custom scheme for our editor (try Schemas.https)
+		scheme: 'taycan',  // Custom scheme for our editor (try Schemas.https)
 		path: 'settings'
 	})
-	readonly resource = VoidSettingsInput.RESOURCE;
+	readonly resource = TaycanSettingsInput.RESOURCE;
 
 	constructor() {
 		super();
 	}
 
 	override get typeId(): string {
-		return VoidSettingsInput.ID;
+		return TaycanSettingsInput.ID;
 	}
 
 	override getName(): string {
-		return nls.localize('voidSettingsInputsName', 'Void\'s Settings');
+		return nls.localize('taycanSettingsInputsName', 'Taycan\'s Settings');
 	}
 
 	override getIcon() {
@@ -113,17 +113,17 @@ class VoidSettingsPane extends EditorPane {
 // register Settings pane
 Registry.as<IEditorPaneRegistry>(EditorExtensions.EditorPane).registerEditorPane(
 	EditorPaneDescriptor.create(VoidSettingsPane, VoidSettingsPane.ID, nls.localize('VoidSettingsPane', "Void\'s Settings Pane")),
-	[new SyncDescriptor(VoidSettingsInput)]
+	[new SyncDescriptor(TaycanSettingsInput)]
 );
 
 
 // register the gear on the top right
-export const VOID_TOGGLE_SETTINGS_ACTION_ID = 'workbench.action.toggleVoidSettings'
+export const VOID_TOGGLE_SETTINGS_ACTION_ID = 'workbench.action.toggleTaycanSettings'
 registerAction2(class extends Action2 {
 	constructor() {
 		super({
 			id: VOID_TOGGLE_SETTINGS_ACTION_ID,
-			title: nls.localize2('voidSettings', "Void: Toggle Settings"),
+			title: nls.localize2('taycanSettings', "Taycan: Toggle Settings"),
 			icon: Codicon.settingsGear,
 			menu: [
 				{
@@ -146,7 +146,7 @@ registerAction2(class extends Action2 {
 		const instantiationService = accessor.get(IInstantiationService);
 
 		// if is open, close it
-		const openEditors = editorService.findEditors(VoidSettingsInput.RESOURCE); // should only have 0 or 1 elements...
+		const openEditors = editorService.findEditors(TaycanSettingsInput.RESOURCE); // should only have 0 or 1 elements...
 		if (openEditors.length !== 0) {
 			const openEditor = openEditors[0].editor
 			const isCurrentlyOpen = editorService.activeEditor?.resource?.fsPath === openEditor.resource?.fsPath
@@ -159,7 +159,7 @@ registerAction2(class extends Action2 {
 
 
 		// else open it
-		const input = instantiationService.createInstance(VoidSettingsInput);
+		const input = instantiationService.createInstance(TaycanSettingsInput);
 
 		await editorGroupService.activeGroup.openEditor(input);
 	}
@@ -167,12 +167,12 @@ registerAction2(class extends Action2 {
 
 
 
-export const VOID_OPEN_SETTINGS_ACTION_ID = 'workbench.action.openVoidSettings'
+export const TAYCAN_OPEN_SETTINGS_ACTION_ID = 'workbench.action.openVoidSettings'
 registerAction2(class extends Action2 {
 	constructor() {
 		super({
-			id: VOID_OPEN_SETTINGS_ACTION_ID,
-			title: nls.localize2('voidSettingsAction2', "Void: Open Settings"),
+			id: TAYCAN_OPEN_SETTINGS_ACTION_ID,
+			title: nls.localize2('taycanSettingsAction2', "Taycan: Open Settings"),
 			f1: true,
 			icon: Codicon.settingsGear,
 		});
@@ -182,13 +182,13 @@ registerAction2(class extends Action2 {
 		const instantiationService = accessor.get(IInstantiationService);
 
 		// close all instances if found
-		const openEditors = editorService.findEditors(VoidSettingsInput.RESOURCE);
+		const openEditors = editorService.findEditors(TaycanSettingsInput.RESOURCE);
 		if (openEditors.length > 0) {
 			await editorService.closeEditors(openEditors);
 		}
 
 		// then, open one single editor
-		const input = instantiationService.createInstance(VoidSettingsInput);
+		const input = instantiationService.createInstance(TaycanSettingsInput);
 		await editorService.openEditor(input);
 	}
 })
@@ -202,7 +202,7 @@ MenuRegistry.appendMenuItem(MenuId.GlobalActivity, {
 	group: '0_command',
 	command: {
 		id: VOID_TOGGLE_SETTINGS_ACTION_ID,
-		title: nls.localize('voidSettingsActionGear', "Void\'s Settings")
+		title: nls.localize('taycanSettingsActionGear', "Taycan\'s Settings")
 	},
 	order: 1
 });

@@ -18,8 +18,7 @@ const OVERRIDE_VALUE = false
 export const VoidOnboarding = () => {
 
 	const voidSettingsState = useSettingsState()
-	const isOnboardingComplete =  OVERRIDE_VALUE
-	// || voidSettingsState.globalSettings.isOnboardingComplete
+	const isOnboardingComplete = OVERRIDE_VALUE || voidSettingsState.globalSettings.isOnboardingComplete
 
 	const isDark = useIsDark()
 
@@ -96,25 +95,25 @@ const FadeIn = ({ children, className, delayMs = 0, durationMs, ...props }: { ch
 //  New AddProvidersPage Component and helpers
 // =============================================
 
-const tabNames = ['Free', 'Paid', 'Local'] as const;
+// const tabNames = ['Free', 'Paid', 'Local'] as const;
 
-type TabName = typeof tabNames[number] | 'Cloud/Other';
+type TabName = 'Cloud/Other';
 
 // Data for cloud providers tab
 const cloudProviders: ProviderName[] = ['googleVertex', 'liteLLM', 'microsoftAzure', 'awsBedrock', 'openAICompatible'];
 
 // Data structures for provider tabs
 const providerNamesOfTab: Record<TabName, ProviderName[]> = {
-	Free: ['gemini', 'openRouter'],
-	Local: localProviderNames,
-	Paid: providerNames.filter(pn => !(['gemini', 'openRouter', ...localProviderNames, ...cloudProviders] as string[]).includes(pn)) as ProviderName[],
+	// Free: ['gemini', 'openRouter'],
+	// Local: localProviderNames,
+	// Paid: providerNames.filter(pn => !(['gemini', 'openRouter', ...localProviderNames, ...cloudProviders] as string[]).includes(pn)) as ProviderName[],
 	'Cloud/Other': cloudProviders,
 };
 
 const descriptionOfTab: Record<TabName, string> = {
-	Free: `Providers with a 100% free tier. Add as many as you'd like!`,
-	Paid: `Connect directly with any provider (bring your own key).`,
-	Local: `Active providers should appear automatically. Add as many as you'd like! `,
+	// Free: `Providers with a 100% free tier. Add as many as you'd like!`,
+	// Paid: `Connect directly with any provider (bring your own key).`,
+	// Local: `Active providers should appear automatically. Add as many as you'd like! `,
 	'Cloud/Other': `Add as many as you'd like! Reach out for custom configuration requests.`,
 };
 
@@ -128,7 +127,7 @@ const featureNameMap: { display: string, featureName: FeatureName }[] = [
 ];
 
 const AddProvidersPage = ({ pageIndex, setPageIndex }: { pageIndex: number, setPageIndex: (index: number) => void }) => {
-	const [currentTab, setCurrentTab] = useState<TabName>('Free');
+	const [currentTab, setCurrentTab] = useState<TabName>('Cloud/Other');
 	const settingsState = useSettingsState();
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -155,7 +154,7 @@ const AddProvidersPage = ({ pageIndex, setPageIndex }: { pageIndex: number, setP
 		<div className="md:w-1/4 w-full flex flex-col gap-6 p-6 border-none border-void-border-2 h-full overflow-y-auto">
 			{/* Tab Selector */}
 			<div className="flex md:flex-col gap-2">
-				{[...tabNames, 'Cloud/Other'].map(tab => (
+				{['Cloud/Other'].map(tab => (
 					<button
 						key={tab}
 						className={`py-2 px-4 rounded-md text-left ${currentTab === tab
@@ -230,17 +229,12 @@ const AddProvidersPage = ({ pageIndex, setPageIndex }: { pageIndex: number, setP
 				</div>
 			))}
 
-			{(currentTab === 'Local' || currentTab === 'Cloud/Other') && (
+			{currentTab === 'Cloud/Other' && (
 				<div className="w-full max-w-xl mt-8 bg-void-bg-2/50 rounded-lg p-6 border border-void-border-4">
 					<div className="flex items-center gap-2 mb-4">
 						<div className="text-xl font-medium">Models</div>
 					</div>
 
-					{currentTab === 'Local' && (
-						<div className="text-sm opacity-80 text-void-fg-3 my-4 w-full">Local models should be detected automatically. You can add custom models below.</div>
-					)}
-
-					{currentTab === 'Local' && <ModelDump filteredProviders={localProviderNames} />}
 					{currentTab === 'Cloud/Other' && <ModelDump filteredProviders={cloudProviders} />}
 				</div>
 			)}
@@ -548,7 +542,7 @@ const VoidOnboardingContent = () => {
 					voidMetricsService.capture('Completed Onboarding', { selectedProviderName, wantToUseOption })
 				}}
 				ringSize={voidSettingsState.globalSettings.isOnboardingComplete ? 'screen' : undefined}
-			>Enter the Void</PrimaryActionButton>
+			>Enter the Taycan</PrimaryActionButton>
 		</div>
 	</div>
 

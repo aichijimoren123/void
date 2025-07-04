@@ -14,7 +14,7 @@ import { ContextKeyExpr } from '../../../../platform/contextkey/common/contextke
 
 import { ICodeEditorService } from '../../../../editor/browser/services/codeEditorService.js';
 import { IRange } from '../../../../editor/common/core/range.js';
-import { VOID_VIEW_CONTAINER_ID, VOID_VIEW_ID } from './sidebarPane.js';
+import { TAYCAN_VIEW_CONTAINER_ID, TAYCAN_VIEW_ID } from './sidebarPane.js';
 import { IMetricsService } from '../common/metricsService.js';
 import { ICommandService } from '../../../../platform/commands/common/commands.js';
 import { VOID_TOGGLE_SETTINGS_ACTION_ID } from './voidSettingsPane.js';
@@ -69,7 +69,7 @@ registerAction2(class extends Action2 {
 	async run(accessor: ServicesAccessor): Promise<void> {
 		const viewsService = accessor.get(IViewsService)
 		const chatThreadsService = accessor.get(IChatThreadService)
-		viewsService.openViewContainer(VOID_VIEW_CONTAINER_ID)
+		viewsService.openViewContainer(TAYCAN_VIEW_CONTAINER_ID)
 		await chatThreadsService.focusCurrentChat()
 	}
 })
@@ -106,7 +106,7 @@ registerAction2(class extends Action2 {
 		const selectionRange = roundRangeToLines(editor?.getSelection(), { emptySelectionBehavior: 'null' })
 
 		// open panel
-		const wasAlreadyOpen = viewsService.isViewContainerVisible(VOID_VIEW_CONTAINER_ID)
+		const wasAlreadyOpen = viewsService.isViewContainerVisible(TAYCAN_VIEW_CONTAINER_ID)
 		if (!wasAlreadyOpen) {
 			await commandService.executeCommand(VOID_OPEN_SIDEBAR_ACTION_ID)
 		}
@@ -155,7 +155,7 @@ registerAction2(class extends Action2 {
 				weight: KeybindingWeight.VoidExtension,
 			},
 			icon: { id: 'add' },
-			menu: [{ id: MenuId.ViewTitle, group: 'navigation', when: ContextKeyExpr.equals('view', VOID_VIEW_ID), }],
+			menu: [{ id: MenuId.ViewTitle, group: 'navigation', when: ContextKeyExpr.equals('view', TAYCAN_VIEW_ID), }],
 		});
 	}
 	async run(accessor: ServicesAccessor): Promise<void> {
@@ -212,7 +212,7 @@ registerAction2(class extends Action2 {
 			id: 'void.historyAction',
 			title: 'View Past Chats',
 			icon: { id: 'history' },
-			menu: [{ id: MenuId.ViewTitle, group: 'navigation', when: ContextKeyExpr.equals('view', VOID_VIEW_ID), }]
+			menu: [{ id: MenuId.ViewTitle, group: 'navigation', when: ContextKeyExpr.equals('view', TAYCAN_VIEW_ID), }]
 		});
 	}
 	async run(accessor: ServicesAccessor): Promise<void> {
@@ -239,10 +239,10 @@ registerAction2(class extends Action2 {
 registerAction2(class extends Action2 {
 	constructor() {
 		super({
-			id: 'void.settingsAction',
-			title: `Void's Settings`,
+			id: 'taycan.settingsAction',
+			title: `Taycan's Settings`,
 			icon: { id: 'settings-gear' },
-			menu: [{ id: MenuId.ViewTitle, group: 'navigation', when: ContextKeyExpr.equals('view', VOID_VIEW_ID), }]
+			menu: [{ id: MenuId.ViewTitle, group: 'navigation', when: ContextKeyExpr.equals('view', TAYCAN_VIEW_ID), }]
 		});
 	}
 	async run(accessor: ServicesAccessor): Promise<void> {

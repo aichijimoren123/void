@@ -14,7 +14,7 @@ import { isAbsolute } from '../../../../../../../base/common/path.js'
 import { separateOutFirstLine } from '../../../../common/helpers/util.js'
 import { BlockCode } from '../util/inputs.js'
 import { CodespanLocationLink } from '../../../../common/chatThreadServiceTypes.js'
-import { getBasename, getRelative, voidOpenFileFn } from '../sidebar-tsx/SidebarChat.js'
+import { getBasename, getRelative, openFileFn } from '../sidebar-tsx/utils.js'
 
 
 export type ChatMessageLocation = {
@@ -152,9 +152,9 @@ const CodespanWithLink = ({ text, rawText, chatMessageLocation }: { text: string
 		if (!link) return;
 		// Use the updated voidOpenFileFn to open the file and handle selection
 		if (link.selection)
-			voidOpenFileFn(link.uri, accessor, [link.selection.startLineNumber, link.selection.endLineNumber]);
+			openFileFn(link.uri, accessor, [link.selection.startLineNumber, link.selection.endLineNumber]);
 		else
-			voidOpenFileFn(link.uri, accessor);
+			openFileFn(link.uri, accessor);
 	}
 
 	return <Codespan

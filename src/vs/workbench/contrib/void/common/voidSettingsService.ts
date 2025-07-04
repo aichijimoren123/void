@@ -289,7 +289,7 @@ class VoidSettingsService extends Disposable implements IVoidSettingsService {
 			}
 			// add disableSystemMessage feature
 			if (readS.globalSettings.disableSystemMessage === undefined) readS.globalSettings.disableSystemMessage = false;
-			
+
 			// add autoAcceptLLMChanges feature
 			if (readS.globalSettings.autoAcceptLLMChanges === undefined) readS.globalSettings.autoAcceptLLMChanges = false;
 		}
@@ -347,6 +347,7 @@ class VoidSettingsService extends Disposable implements IVoidSettingsService {
 	}
 
 
+	/** 读取状态 */
 	private async _readState(): Promise<VoidSettingsState> {
 		const encryptedState = this._storageService.get(VOID_SETTINGS_STORAGE_KEY, StorageScope.APPLICATION)
 
@@ -359,12 +360,14 @@ class VoidSettingsService extends Disposable implements IVoidSettingsService {
 	}
 
 
+	/** 存储状态 */
 	private async _storeState() {
 		const state = this.state
 		const encryptedState = await this._encryptionService.encrypt(JSON.stringify(state))
 		this._storageService.store(VOID_SETTINGS_STORAGE_KEY, encryptedState, StorageScope.APPLICATION, StorageTarget.USER);
 	}
 
+	/** 设置模型提供商 */
 	setSettingOfProvider: SetSettingOfProviderFn = async (providerName, settingName, newVal) => {
 
 		const newModelSelectionOfFeature = this.state.modelSelectionOfFeature

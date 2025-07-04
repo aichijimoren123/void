@@ -351,8 +351,10 @@ type InputBox2Props = {
 	onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
 	onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
 	onChangeHeight?: (newHeight: number) => void;
+	// {{添加 onPaste 属性}}
+	onPaste?: (e: React.ClipboardEvent<HTMLTextAreaElement>) => void;
 }
-export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(function X({ initValue, placeholder, multiline, enableAtToMention, fnsRef, className, onKeyDown, onFocus, onBlur, onChangeText }, ref) {
+export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(function X({ initValue, placeholder, multiline, enableAtToMention, fnsRef, className, onKeyDown, onFocus, onBlur, onChangeText,onPaste }, ref) {
 
 
 	// mirrors whatever is in ref
@@ -758,6 +760,8 @@ export const VoidInputBox2 = forwardRef<HTMLTextAreaElement, InputBox2Props>(fun
 				color: asCssVariable(inputForeground)
 				// inputBorder: asCssVariable(inputBorder),
 			}}
+
+			onPaste={onPaste}
 
 			onInput={useCallback((event: React.FormEvent<HTMLTextAreaElement>) => {
 				const latestChange = (event.nativeEvent as InputEvent).data;

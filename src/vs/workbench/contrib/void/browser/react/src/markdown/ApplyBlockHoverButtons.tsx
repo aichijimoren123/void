@@ -10,8 +10,10 @@ import { isFeatureNameDisabled } from '../../../../common/voidSettingsTypes.js'
 import { URI } from '../../../../../../../base/common/uri.js'
 import { FileSymlink, LucideIcon, RotateCw, Terminal } from 'lucide-react'
 import { Check, X, Square, Copy, Play, } from 'lucide-react'
-import { getBasename, ListableToolItem, voidOpenFileFn, ToolChildrenWrapper } from '../sidebar-tsx/SidebarChat.js'
 import { PlacesType, VariantType } from 'react-tooltip'
+import { getBasename, openFileFn } from '../sidebar-tsx/utils.js'
+import { ToolChildrenWrapper } from '../sidebar-tsx/ToolChildrenWrapper.js'
+import { ListableToolItem } from '../sidebar-tsx/ListableToolItem.js'
 
 enum CopyButtonText {
 	Idle = 'Copy',
@@ -109,7 +111,7 @@ export const JumpToFileButton = ({ uri, ...props }: { uri: URI | 'current' } & R
 		<IconShell1
 			Icon={FileSymlink}
 			onClick={() => {
-				voidOpenFileFn(uri, accessor)
+				openFileFn(uri, accessor)
 			}}
 			{...tooltipPropsForApplyBlock({ tooltipName: 'Go to file' })}
 			{...props}
@@ -530,7 +532,7 @@ export const BlockCodeApplyWrapper = ({
 			name={<span className='not-italic'>{getBasename(uri.fsPath)}</span>}
 			isSmall={true}
 			showDot={false}
-			onClick={() => { voidOpenFileFn(uri, accessor) }}
+			onClick={() => { openFileFn(uri, accessor) }}
 		/>
 		: <span>{language}</span>
 
