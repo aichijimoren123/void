@@ -6,15 +6,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSettingsState, useAccessor, useCtrlKZoneStreamingState } from '../util/services.js';
 import { QuickEditPropsType } from '../../../quickEditActions.js';
-
 import { VOID_CTRL_K_ACTION_ID } from '../../../actionIDs.js';
 import { useRefState } from '../util/helpers.js';
 import { isFeatureNameDisabled } from '../../../../../../../workbench/contrib/void/common/voidSettingsTypes.js';
 import { ChatArea } from '../sidebar-tsx/ChatArea.js';
 import { TextAreaFns, VoidInputBox2 } from '../util/InputBox.js';
-
-
-
 
 export const QuickEditChat = ({
 	diffareaid,

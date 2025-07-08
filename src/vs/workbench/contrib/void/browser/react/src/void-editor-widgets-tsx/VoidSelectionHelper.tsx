@@ -1,14 +1,9 @@
-/*--------------------------------------------------------------------------------------
- *  Copyright 2025 Glass Devtools, Inc. All rights reserved.
- *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
- *--------------------------------------------------------------------------------------*/
 
-
-import { useAccessor, useActiveURI, useIsDark, useSettingsState } from '../util/services.js';
+import { useAccessor, useIsDark } from '../util/services.js';
 
 import '../styles.css'
 import { VOID_CTRL_K_ACTION_ID, VOID_CTRL_L_ACTION_ID } from '../../../actionIDs.js';
-import { Circle, MoreVertical } from 'lucide-react';
+import { MoreVertical } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { VoidSelectionHelperProps } from '../../../../../../contrib/void/browser/voidSelectionHelperWidget.js';

@@ -5,13 +5,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useAccessor, useIsDark, useSettingsState } from '../util/services.js';
-import { Brain, Check, ChevronRight, DollarSign, ExternalLink, Lock, X } from 'lucide-react';
-import { displayInfoOfProviderName, ProviderName, providerNames, localProviderNames, featureNames, FeatureName, isFeatureNameDisabled } from '../../../../common/voidSettingsTypes.js';
-import { ChatMarkdownRender } from '../markdown/ChatMarkdownRender.js';
-
+import { Check, ChevronRight, ExternalLink, } from 'lucide-react';
+import { displayInfoOfProviderName, ProviderName, providerNames, FeatureName, isFeatureNameDisabled } from '../../../../common/voidSettingsTypes.js';
 import { ColorScheme } from '../../../../../../../platform/theme/common/theme.js';
 import ErrorBoundary from '../sidebar-tsx/ErrorBoundary.js';
-import { isLinux } from '../../../../../../../base/common/platform.js';
+
 import { SettingsForProvider } from '../void-settings-tsx/ProviderSettings.js';
 import { OneClickSwitchButton } from '../void-settings-tsx/ClickSwitchButton.js';
 import { ModelDump } from '../void-settings-tsx/ModelSettings.js';

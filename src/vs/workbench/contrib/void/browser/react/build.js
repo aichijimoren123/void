@@ -61,7 +61,7 @@ function saveStylesFile() {
 	setTimeout(() => {
 		try {
 			const pathToCssFile = findDesiredPathFromLocalPath('./src/vs/workbench/contrib/void/browser/react/src2/styles.css', __dirname);
-
+			console.log('[scope-tailwind] Found styles.css at:', pathToCssFile);
 			if (pathToCssFile === undefined) {
 				console.error('[scope-tailwind] Error finding styles.css');
 				return;
@@ -114,9 +114,9 @@ if (isWatch) {
 	scopeTailwindWatcher.stdout.on('data', (data) => {
 		console.log(`[scope-tailwind] ${data}`);
 		// If the output mentions "styles.css", trigger the save:
-		if (data.toString().includes('styles.css')) {
-			saveStylesFile();
-		}
+		// if (data.toString().includes('styles.css')) {
+		// 	saveStylesFile();
+		// }
 	});
 
 	scopeTailwindWatcher.stderr.on('data', (data) => {
@@ -125,6 +125,7 @@ if (isWatch) {
 
 	// Handle tsup watcher output
 	tsupWatcher.stdout.on('data', (data) => {
+
 		console.log(`[tsup] ${data}`);
 	});
 

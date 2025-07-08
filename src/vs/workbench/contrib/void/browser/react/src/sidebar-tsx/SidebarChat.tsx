@@ -87,33 +87,6 @@ const ScrollToBottomContainer = ({
 	);
 };
 
-const EditToolChildren = ({
-	uri,
-	code,
-	type,
-}: {
-	uri: URI | undefined;
-	code: string;
-	type: "diff" | "rewrite";
-}) => {
-	const content =
-		type === "diff" ? (
-			<TarsDiffEditor uri={uri} searchReplaceBlocks={code} />
-		) : (
-			<ChatMarkdownRender
-				string={`\`\`\`\n${code}\n\`\`\``}
-				codeURI={uri}
-				chatMessageLocation={undefined}
-			/>
-		);
-
-	return (
-		<div className="!select-text cursor-auto">
-			<SmallProseWrapper>{content}</SmallProseWrapper>
-		</div>
-	);
-};
-
 export const SidebarChat = () => {
 	const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 	const textAreaFnsRef = useRef<TextAreaFns | null>(null);
@@ -132,8 +105,9 @@ export const SidebarChat = () => {
 	const previousMessages = currentThread?.messages ?? [];
 
 	const selections = currentThread.state.stagingSelections;
-	const setSelections = (s: StagingSelectionItem[]) => {
-		chatThreadsService.setCurrentThreadState({ stagingSelections: s });
+	const setSelections = (selections: StagingSelectionItem[]) => {
+		// Update the selections in the current thread state
+		chatThreadsService.setCurrentThreadState({ stagingSelections: selections });
 	};
 
 	// stream state

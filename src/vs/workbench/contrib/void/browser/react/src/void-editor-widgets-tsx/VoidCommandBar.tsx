@@ -1,17 +1,8 @@
-/*--------------------------------------------------------------------------------------
- *  Copyright 2025 Glass Devtools, Inc. All rights reserved.
- *  Licensed under the Apache License, Version 2.0. See LICENSE.txt for more information.
- *--------------------------------------------------------------------------------------*/
-
-
 import { useAccessor, useCommandBarState, useIsDark } from '../util/services.js';
-
 import '../styles.css'
-import { useCallback, useEffect, useState, useRef } from 'react';
-import { ScrollType } from '../../../../../../../editor/common/editorCommon.js';
-import { acceptAllBg, acceptBorder, buttonFontSize, buttonTextColor, rejectAllBg, rejectBg, rejectBorder } from '../../../../common/helpers/colors.js';
+import { useEffect, useState, useRef } from 'react';
 import { VoidCommandBarProps } from '../../../voidCommandBarService.js';
-import { Check, EllipsisVertical, Menu, MoveDown, MoveLeft, MoveRight, MoveUp, X } from 'lucide-react';
+import { Check, EllipsisVertical, MoveDown, MoveLeft, MoveRight, MoveUp, X } from 'lucide-react';
 import {
 	VOID_GOTO_NEXT_DIFF_ACTION_ID,
 	VOID_GOTO_PREV_DIFF_ACTION_ID,
@@ -235,7 +226,7 @@ export const VoidCommandBar = ({ uri, editor }: VoidCommandBarProps) => {
 								data-tooltip-content={acceptAllKeybindLabel}
 								data-tooltip-delay-show={500}
 								onClick={onAcceptAll}
-								/>
+							/>
 							<RejectAllButtonWrapper
 								// text={`Reject All${rejectAllKeybindLabel ? ` ${rejectAllKeybindLabel}` : ''}`}
 								text={`Reject All`}

@@ -203,48 +203,7 @@ export const SelectedFiles = ({
 
 							{selection.type === "Image" && (
 								<div key={thisKey} className="flex flex-col gap-1">
-									{/* 图片标签 */}
-									<div
-										className={`
-                                flex items-center gap-1 relative
-                                px-1 w-fit h-fit
-                                select-none text-xs text-nowrap
-                                border rounded-sm
-                                ${isThisSelectionProspective
-												? "bg-void-bg-1 text-void-fg-3 opacity-80"
-												: "bg-void-bg-1 hover:brightness-95 text-void-fg-1"
-											}
-                                ${isThisSelectionProspective
-												? "border-void-border-2"
-												: "border-void-border-1"
-											}
-                                hover:border-void-border-1
-                                transition-all duration-150
-                            `}
-									>
-										<ImageIcon size={10} />
-										<span>{selection.name}</span>
-										{type === "staging" && !isThisSelectionProspective && (
-											<div
-												className="cursor-pointer z-1 self-stretch flex items-center justify-center"
-												onClick={(e) => {
-													e.stopPropagation();
-													setSelections([
-														...selections.slice(0, i),
-														...selections.slice(i + 1),
-													]);
-												}}
-											>
-												<IconX className="stroke-[2]" size={10} />
-											</div>
-										)}
-									</div>
-									{/* 图片预览 */}
-									<img
-										src={selection.dataUrl}
-										alt={selection.name}
-										className="max-w-[150px] max-h-[150px] object-contain rounded border border-void-border-3"
-									/>
+									<span>{selection.name}</span>
 								</div>
 							)}
 

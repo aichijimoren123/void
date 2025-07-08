@@ -32,10 +32,10 @@ import { toDisposable } from '../../../../base/common/lifecycle.js';
 
 class TarsSettingsInput extends EditorInput {
 
-	static readonly ID: string = 'workbench.input.taycan.settings';
+	static readonly ID: string = 'workbench.input.tars.settings';
 
 	static readonly RESOURCE = URI.from({ // I think this scheme is invalid, it just shuts up TS
-		scheme: 'taycan',  // Custom scheme for our editor (try Schemas.https)
+		scheme: 'tars',  // Custom scheme for our editor (try Schemas.https)
 		path: 'settings'
 	})
 	readonly resource = TarsSettingsInput.RESOURCE;
