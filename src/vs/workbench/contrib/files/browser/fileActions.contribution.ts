@@ -27,7 +27,7 @@ import { ThemeIcon } from '../../../../base/common/themables.js';
 import { IExplorerService } from './files.js';
 import { Codicon } from '../../../../base/common/codicons.js';
 import { Categories } from '../../../../platform/action/common/actionCommonCategories.js';
-import { TAYCAN_OPEN_SETTINGS_ACTION_ID } from '../../void/browser/voidSettingsPane.js';
+import { TARS_OPEN_SETTINGS_ACTION_ID } from '../../void/browser/voidSettingsPane.js';
 
 // Contribute Global Actions
 
@@ -681,7 +681,7 @@ for (const menuId of [MenuId.EmptyEditorGroupContext, MenuId.EditorTabsBarContex
 MenuRegistry.appendMenuItem(MenuId.MenubarFileMenu, {
 	group: '0_void',
 	command: {
-		id: TAYCAN_OPEN_SETTINGS_ACTION_ID,
+		id: TARS_OPEN_SETTINGS_ACTION_ID,
 		title: nls.localize({ key: 'openVoid', comment: ['&& denotes a mnemonic'] }, "&&Open Void Settings"),
 	},
 	order: 1

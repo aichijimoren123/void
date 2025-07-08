@@ -157,7 +157,7 @@ registerAction2(class extends Action2 {
 	constructor() {
 		super({
 			id: TAYCAN_OPEN_SIDEBAR_ACTION_ID,
-			title: 'Open Taycan Sidebar',
+			title: 'Open Tars Sidebar',
 		})
 	}
 	run(accessor: ServicesAccessor): void {
@@ -167,7 +167,7 @@ registerAction2(class extends Action2 {
 });
 
 export class SidebarStartContribution implements IWorkbenchContribution {
-	static readonly ID = 'workbench.contrib.startupTaycanSidebar';
+	static readonly ID = 'workbench.contrib.startupTarsSidebar';
 	constructor(
 		@ICommandService private readonly commandService: ICommandService,
 	) {

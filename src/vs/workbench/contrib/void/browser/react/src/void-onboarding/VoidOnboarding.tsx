@@ -8,14 +8,18 @@ import { useAccessor, useIsDark, useSettingsState } from '../util/services.js';
 import { Brain, Check, ChevronRight, DollarSign, ExternalLink, Lock, X } from 'lucide-react';
 import { displayInfoOfProviderName, ProviderName, providerNames, localProviderNames, featureNames, FeatureName, isFeatureNameDisabled } from '../../../../common/voidSettingsTypes.js';
 import { ChatMarkdownRender } from '../markdown/ChatMarkdownRender.js';
-import { OllamaSetupInstructions, OneClickSwitchButton, SettingsForProvider, ModelDump } from '../void-settings-tsx/Settings.js';
+
 import { ColorScheme } from '../../../../../../../platform/theme/common/theme.js';
 import ErrorBoundary from '../sidebar-tsx/ErrorBoundary.js';
 import { isLinux } from '../../../../../../../base/common/platform.js';
+import { SettingsForProvider } from '../void-settings-tsx/ProviderSettings.js';
+import { OneClickSwitchButton } from '../void-settings-tsx/ClickSwitchButton.js';
+import { ModelDump } from '../void-settings-tsx/ModelSettings.js';
+import { OllamaSetupInstructions } from '../void-settings-tsx/OllamaInstructions.js';
 
 const OVERRIDE_VALUE = false
 
-export const VoidOnboarding = () => {
+export const TarsOnboarding = () => {
 
 	const voidSettingsState = useSettingsState()
 	const isOnboardingComplete = OVERRIDE_VALUE || voidSettingsState.globalSettings.isOnboardingComplete
@@ -542,7 +546,7 @@ const VoidOnboardingContent = () => {
 					voidMetricsService.capture('Completed Onboarding', { selectedProviderName, wantToUseOption })
 				}}
 				ringSize={voidSettingsState.globalSettings.isOnboardingComplete ? 'screen' : undefined}
-			>Enter the Taycan</PrimaryActionButton>
+			>Enter the Tars</PrimaryActionButton>
 		</div>
 	</div>
 
@@ -591,7 +595,7 @@ const VoidOnboardingContent = () => {
 		0: <OnboardingPageShell
 			content={
 				<div className='flex flex-col items-center gap-8'>
-					<div className="text-5xl font-light text-center">Welcome to Taycan</div>
+					<div className="text-5xl font-light text-center">Welcome to Tars</div>
 
 					<FadeIn
 						delayMs={1000}

@@ -12,7 +12,7 @@ import { Circle, MoreVertical } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { VoidSelectionHelperProps } from '../../../../../../contrib/void/browser/voidSelectionHelperWidget.js';
-import { TAYCAN_OPEN_SETTINGS_ACTION_ID } from '../../../voidSettingsPane.js';
+import { TARS_OPEN_SETTINGS_ACTION_ID } from '../../../voidSettingsPane.js';
 
 
 export const VoidSelectionHelperMain = (props: VoidSelectionHelperProps) => {
@@ -133,7 +133,7 @@ const VoidSelectionHelper = ({ rerenderKey }: VoidSelectionHelperProps) => {
 				cursor-pointer
 			'
 			onClick={() => {
-				commandService.executeCommand(TAYCAN_OPEN_SETTINGS_ACTION_ID);
+				commandService.executeCommand(TARS_OPEN_SETTINGS_ACTION_ID);
 				setClickState('clickedOption');
 			}}
 		>

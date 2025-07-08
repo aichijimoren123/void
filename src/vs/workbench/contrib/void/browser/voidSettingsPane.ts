@@ -30,7 +30,7 @@ import { toDisposable } from '../../../../base/common/lifecycle.js';
 
 // refer to preferences.contribution.ts keybindings editor
 
-class TaycanSettingsInput extends EditorInput {
+class TarsSettingsInput extends EditorInput {
 
 	static readonly ID: string = 'workbench.input.taycan.settings';
 
@@ -38,18 +38,18 @@ class TaycanSettingsInput extends EditorInput {
 		scheme: 'taycan',  // Custom scheme for our editor (try Schemas.https)
 		path: 'settings'
 	})
-	readonly resource = TaycanSettingsInput.RESOURCE;
+	readonly resource = TarsSettingsInput.RESOURCE;
 
 	constructor() {
 		super();
 	}
 
 	override get typeId(): string {
-		return TaycanSettingsInput.ID;
+		return TarsSettingsInput.ID;
 	}
 
 	override getName(): string {
-		return nls.localize('taycanSettingsInputsName', 'Taycan\'s Settings');
+		return nls.localize('taycanSettingsInputsName', 'Tars\'s Settings');
 	}
 
 	override getIcon() {
@@ -113,17 +113,17 @@ class VoidSettingsPane extends EditorPane {
 // register Settings pane
 Registry.as<IEditorPaneRegistry>(EditorExtensions.EditorPane).registerEditorPane(
 	EditorPaneDescriptor.create(VoidSettingsPane, VoidSettingsPane.ID, nls.localize('VoidSettingsPane', "Void\'s Settings Pane")),
-	[new SyncDescriptor(TaycanSettingsInput)]
+	[new SyncDescriptor(TarsSettingsInput)]
 );
 
 
 // register the gear on the top right
-export const VOID_TOGGLE_SETTINGS_ACTION_ID = 'workbench.action.toggleTaycanSettings'
+export const VOID_TOGGLE_SETTINGS_ACTION_ID = 'workbench.action.toggleTarsSettings'
 registerAction2(class extends Action2 {
 	constructor() {
 		super({
 			id: VOID_TOGGLE_SETTINGS_ACTION_ID,
-			title: nls.localize2('taycanSettings', "Taycan: Toggle Settings"),
+			title: nls.localize2('taycanSettings', "Tars: Toggle Settings"),
 			icon: Codicon.settingsGear,
 			menu: [
 				{
@@ -146,7 +146,7 @@ registerAction2(class extends Action2 {
 		const instantiationService = accessor.get(IInstantiationService);
 
 		// if is open, close it
-		const openEditors = editorService.findEditors(TaycanSettingsInput.RESOURCE); // should only have 0 or 1 elements...
+		const openEditors = editorService.findEditors(TarsSettingsInput.RESOURCE); // should only have 0 or 1 elements...
 		if (openEditors.length !== 0) {
 			const openEditor = openEditors[0].editor
 			const isCurrentlyOpen = editorService.activeEditor?.resource?.fsPath === openEditor.resource?.fsPath
@@ -159,7 +159,7 @@ registerAction2(class extends Action2 {
 
 
 		// else open it
-		const input = instantiationService.createInstance(TaycanSettingsInput);
+		const input = instantiationService.createInstance(TarsSettingsInput);
 
 		await editorGroupService.activeGroup.openEditor(input);
 	}
@@ -167,12 +167,12 @@ registerAction2(class extends Action2 {
 
 
 
-export const TAYCAN_OPEN_SETTINGS_ACTION_ID = 'workbench.action.openVoidSettings'
+export const TARS_OPEN_SETTINGS_ACTION_ID = 'workbench.action.openVoidSettings'
 registerAction2(class extends Action2 {
 	constructor() {
 		super({
-			id: TAYCAN_OPEN_SETTINGS_ACTION_ID,
-			title: nls.localize2('taycanSettingsAction2', "Taycan: Open Settings"),
+			id: TARS_OPEN_SETTINGS_ACTION_ID,
+			title: nls.localize2('taycanSettingsAction2', "Tars: Open Settings"),
 			f1: true,
 			icon: Codicon.settingsGear,
 		});
@@ -182,13 +182,13 @@ registerAction2(class extends Action2 {
 		const instantiationService = accessor.get(IInstantiationService);
 
 		// close all instances if found
-		const openEditors = editorService.findEditors(TaycanSettingsInput.RESOURCE);
+		const openEditors = editorService.findEditors(TarsSettingsInput.RESOURCE);
 		if (openEditors.length > 0) {
 			await editorService.closeEditors(openEditors);
 		}
 
 		// then, open one single editor
-		const input = instantiationService.createInstance(TaycanSettingsInput);
+		const input = instantiationService.createInstance(TarsSettingsInput);
 		await editorService.openEditor(input);
 	}
 })
@@ -202,7 +202,7 @@ MenuRegistry.appendMenuItem(MenuId.GlobalActivity, {
 	group: '0_command',
 	command: {
 		id: VOID_TOGGLE_SETTINGS_ACTION_ID,
-		title: nls.localize('taycanSettingsActionGear', "Taycan\'s Settings")
+		title: nls.localize('taycanSettingsActionGear', "Tars\'s Settings")
 	},
 	order: 1
 });

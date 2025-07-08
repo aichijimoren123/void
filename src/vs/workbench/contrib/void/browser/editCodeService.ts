@@ -47,7 +47,7 @@ import { AddCtrlKOpts, CallBeforeStartApplyingOpts, IEditCodeService, StartApply
 import { QuickEditPropsType } from './quickEditActions.js';
 import { mountCtrlK } from './react/out/quick-edit-tsx/index.js';
 // import { isMacintosh } from '../../../../base/common/platform.js';
-// import { TAYCAN_OPEN_SETTINGS_ACTION_ID } from './voidSettingsPane.js';
+// import { TARS_OPEN_SETTINGS_ACTION_ID } from './voidSettingsPane.js';
 
 const numLinesOfStr = (str: string) => str.split('\n').length
 
@@ -284,10 +284,10 @@ class EditCodeService extends Disposable implements IEditCodeService {
 	// 			secondary: [{
 	// 				id: 'void.onerror.opensettings',
 	// 				enabled: true,
-	// 				label: `Open Taycan's settings`,
+	// 				label: `Open Tars's settings`,
 	// 				tooltip: '',
 	// 				class: undefined,
-	// 				run: () => { this._commandService.executeCommand(TAYCAN_OPEN_SETTINGS_ACTION_ID) }
+	// 				run: () => { this._commandService.executeCommand(TARS_OPEN_SETTINGS_ACTION_ID) }
 	// 			}]
 	// 		},
 	// 		source: details ? `(Hold ${isMacintosh ? 'Option' : 'Alt'} to hover) - ${details}\n\nIf this persists, feel free to [report](https://github.com/voideditor/void/issues/new) it.` : undefined

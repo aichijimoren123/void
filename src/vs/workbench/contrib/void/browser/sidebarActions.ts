@@ -240,7 +240,7 @@ registerAction2(class extends Action2 {
 	constructor() {
 		super({
 			id: 'taycan.settingsAction',
-			title: `Taycan's Settings`,
+			title: `Tars's Settings`,
 			icon: { id: 'settings-gear' },
 			menu: [{ id: MenuId.ViewTitle, group: 'navigation', when: ContextKeyExpr.equals('view', TAYCAN_VIEW_ID), }]
 		});
